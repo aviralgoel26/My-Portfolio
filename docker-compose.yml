@@ -1,0 +1,24 @@
+
+
+services:
+  backend:
+    image: contact-service
+    container_name: contact-service
+    ports:
+      - "8081:8081"
+    networks:
+      - portfolio-network
+
+  frontend:
+    image: frontend-service
+    container_name: frontend-service
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge

@@ -1,0 +1,21 @@
+# ===== GLOBAL =====
+.env
+*.log
+.vscode/
+.idea/
+.DS_Store
+
+# ===== FRONTEND (React + Tailwind) =====
+frontend-service/node_modules/
+frontend-service/build/
+frontend-service/dist/
+frontend-service/.env
+
+# ===== BACKEND (Spring Boot) =====
+contact-services/target/
+contact-services/*.class
+contact-services/*.jar
+contact-services/.env
+
+# ===== OS =====
+Thumbs.db
