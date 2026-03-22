@@ -91,7 +91,7 @@ const Hero = () => {
               className="gap-2 px-6 border-primary/30 hover:bg-primary/10"
               asChild
             >
-              <a href="/Aviral Goel CV.pdf" download>
+              <a href="/Aviral Goel Mar CV.pdf" download>
                 <Download size={18} />
                 Download Resume
               </a>

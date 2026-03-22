@@ -33,9 +33,7 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
                 <div className="h-full flex items-center justify-center">
                   <div className="text-center p-8">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-primary flex items-center justify-center">
-                      <span className="font-display text-5xl font-bold text-primary-foreground">AG</span>
-                    </div>
+                    <img src="/profile-photo.png" alt="Aviral Goel" className="w-72 h-72 mx-auto mb-6 rounded-full object-cover" />
                     <h3 className="font-display text-2xl font-bold mb-2">Aviral Goel</h3>
                     <p className="text-muted-foreground">Software Engineer</p>
                   </div>
