@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, FormEvent } from "react";
 import { Mail, Linkedin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "./button";
 import { Input } from "./input";
@@ -13,49 +13,47 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+  const sendViaMailto = (name, senderEmail, message) => {
+    const recipient = "aviralgoel9th@email.com";
+    const subject = `New message from ${name}`;
+    const body = `Name: ${name}\nEmail: ${senderEmail}\n\n${message}`;
 
-  const formData = new FormData(e.target);
-
-  const payload = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
+    return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
-  try {
-    const response = await fetch("http://localhost:8081/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    if (!response.ok) {
-      throw new Error("Failed");
+    const formData = new FormData(e.currentTarget);
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const message = String(formData.get("message") ?? "");
+
+    if (!name || !email || !message) {
+      toast({
+        title: "Please fill all fields",
+        description: "Name, email, and message are required.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
     }
 
+    const mailtoUrl = sendViaMailto(name, email, message);
+    window.location.href = mailtoUrl;
+
     toast({
-      title: "Message sent!",
-      description: "I'll get back to you soon.",
+      title: "Email client opened",
+      description: "If your mail app did not open, please click Send in your email client.",
     });
 
-    e.target.reset();
+    e.currentTarget.reset();
     setIsSubmitted(true);
-  } catch (err) {
-    toast({
-      title: "Error",
-      description: "Please try again later.",
-      variant: "destructive",
-    });
-  } finally {
     setIsSubmitting(false);
+
     setTimeout(() => setIsSubmitted(false), 3000);
-  }
-};
+  };
 
 
   return (
