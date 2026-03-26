@@ -99,7 +99,7 @@ const Certifications = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
