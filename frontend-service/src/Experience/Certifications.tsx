@@ -67,40 +67,48 @@ const Certifications = () => {
 
             <div className="space-y-4">
               {certifications.map((cert, i) => (
-  <motion.a
+  <motion.div
     key={cert.title}
-    href={cert.link}
-    target="_blank"
-    rel="noopener noreferrer"
     initial={{ opacity: 0, y: 20 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.4, delay: i * 0.1 }}
-    className="group glass-card rounded-xl p-5 hover-lift cursor-pointer block"
+    className="group glass-card rounded-xl p-5 hover-lift"
   >
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">{cert.icon}</span>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="font-display font-semibold text-lg group-hover:text-primary transition-colors">
-                            {cert.title}
-                          </h3>
-                          <p className="text-primary/80 text-sm font-medium">
-                            {cert.issuer}
-                          </p>
-                        </div>
-                        <ExternalLink
-                          size={16}
-                          className="text-muted-foreground group-hover:text-primary transition-colors mt-1"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-sm mt-2">
-                        {cert.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.a>
-              ))}
+    <div className="flex items-start gap-4">
+      <span className="text-3xl">{cert.icon}</span>
+
+      <div className="flex-1">
+        <div className="flex items-start justify-between">
+          <div>
+            <h3 className="font-display font-semibold text-lg group-hover:text-primary transition-colors">
+              {cert.title}
+            </h3>
+            <p className="text-primary/80 text-sm font-medium">
+              {cert.issuer}
+            </p>
+          </div>
+
+          {/* ✅ CLICKABLE ICON ONLY */}
+          <a
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1"
+          >
+            <ExternalLink
+              size={16}
+              className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+            />
+          </a>
+        </div>
+
+        <p className="text-muted-foreground text-sm mt-2">
+          {cert.description}
+        </p>
+      </div>
+    </div>
+  </motion.div>
+))}
             </div>
           </motion.div>
 
