@@ -14,6 +14,7 @@ const experiences = [
       "Streamlined operations increasing productivity by 25%",
       "Led cross-functional teams of 10+ members",
       "Implemented scalable workflow solutions",
+      "Earned STEPS Certificate for operational excellence at STEPS Management Services",
     ],
     type: "Full-time",
   },

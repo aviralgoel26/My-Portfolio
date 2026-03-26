@@ -8,18 +8,21 @@ const certifications = [
     issuer: "IIT Madras",
     icon: "🎓",
     description: "Understanding network structures and social graph analysis",
+    link: "https://drive.google.com/file/d/1s_j6xc2k8BP8XNJTRzL6m_PB36gc83m6/view",
   },
   {
-    title: "Hardware and Operating Systems",
+    title: "Introduction to Hardware and Operating Systems",
     issuer: "IBM",
     icon: "💻",
     description: "Computer architecture and OS fundamentals",
+    link: "https://drive.google.com/file/d/1k8gEVs025VHsfv2ZP1pipeh7e0RvZLE5/view"
   },
   {
-    title: "Computer Networking",
+    title: "The Bits and Bytes of Computer Networking",
     issuer: "Google",
     icon: "🌐",
     description: "Network protocols and infrastructure",
+    link: "https://drive.google.com/file/d/1J0x7wmgnbYKxubBLYQZkpkV7zcMR9-sW/view"
   },
 ];
 
@@ -64,13 +67,16 @@ const Certifications = () => {
 
             <div className="space-y-4">
               {certifications.map((cert, i) => (
-                <motion.div
-                  key={cert.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="group glass-card rounded-xl p-5 hover-lift cursor-pointer"
-                >
+  <motion.a
+    key={cert.title}
+    href={cert.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 20 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.4, delay: i * 0.1 }}
+    className="group glass-card rounded-xl p-5 hover-lift cursor-pointer block"
+  >
                   <div className="flex items-start gap-4">
                     <span className="text-3xl">{cert.icon}</span>
                     <div className="flex-1">
