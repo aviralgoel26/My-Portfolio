@@ -1,5 +1,20 @@
+# ── Build Stage ────────────────────────────────────────────────────────────────
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
+WORKDIR /build
+COPY pom.xml .
+RUN mvn dependency:go-offline -q
+COPY src ./src
+RUN mvn clean package -DskipTests -q
+
+# ── Run Stage ──────────────────────────────────────────────────────────────────
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY target/profile-content-service-1.0.0.jar app.jar
-EXPOSE 8082
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY --from=build /build/target/profile-content-service-1.0.0.jar app.jar
+
+EXPOSE ${PORT:-8082}
+
+ENTRYPOINT ["java", \
+  "-XX:+UseContainerSupport", \
+  "-XX:MaxRAMPercentage=75.0", \
+  "-Djava.security.egd=file:/dev/./urandom", \
+  "-jar", "app.jar"]

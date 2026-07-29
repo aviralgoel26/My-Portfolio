@@ -1,0 +1,19 @@
+# Production profile — all values MUST come from environment variables
+# On Render, each service is exposed via its own HTTPS URL.
+# Eureka server does NOT need to advertise itself via hostname in cloud deployment;
+# clients connect via EUREKA_SERVER_URL env var directly.
+eureka:
+  instance:
+    hostname: ${RENDER_EXTERNAL_HOSTNAME:eureka-server}
+    prefer-ip-address: false
+    non-secure-port-enabled: true
+    non-secure-port: ${PORT:8761}
+  client:
+    service-url:
+      defaultZone: http://${RENDER_EXTERNAL_HOSTNAME:eureka-server}:${PORT:8761}/eureka/
+
+logging:
+  level:
+    root: INFO
+    com.netflix.eureka: WARN
+    com.netflix.discovery: WARN

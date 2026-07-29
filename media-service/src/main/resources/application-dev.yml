@@ -1,0 +1,19 @@
+# Dev profile
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://admin:changeme@localhost:27017/portfolio_media?authSource=admin}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:demo}
+  api-key: ${CLOUDINARY_API_KEY:demo}
+  api-secret: ${CLOUDINARY_API_SECRET:demo}
+
+logging:
+  level:
+    com.portfolio.media: DEBUG

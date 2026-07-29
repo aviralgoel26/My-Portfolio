@@ -1,0 +1,11 @@
+# Dev profile — Redis and Eureka use docker-compose service names (or localhost for IDE)
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.portfolio.gateway: DEBUG

@@ -1,0 +1,26 @@
+# Production profile — all values MUST come from environment variables
+# Set SPRING_PROFILES_ACTIVE=prod on Render
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
+
+jwt:
+  secret: ${JWT_SECRET}
+
+app:
+  admin:
+    username: ${ADMIN_USERNAME}
+    password: ${ADMIN_PASSWORD}
+    email: ${ADMIN_EMAIL}
+
+logging:
+  level:
+    root: INFO
+    com.portfolio.auth: INFO
+    org.springframework.security: WARN

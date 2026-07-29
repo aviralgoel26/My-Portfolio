@@ -1,0 +1,37 @@
+# Dev profile
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://admin:changeme@localhost:27017/portfolio_notifications?authSource=admin}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  mail:
+    host: ${SMTP_HOST:smtp.gmail.com}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+
+app:
+  smtp:
+    to-email: ${SMTP_TO_EMAIL:${SMTP_USERNAME:}}
+
+logging:
+  level:
+    com.portfolio.notification: DEBUG

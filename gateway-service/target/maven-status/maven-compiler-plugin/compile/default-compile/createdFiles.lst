@@ -1,0 +1,5 @@
+com\portfolio\gateway\filter\JwtAuthenticationFilter$Config.class
+com\portfolio\gateway\GatewayServiceApplication.class
+com\portfolio\gateway\config\GatewayConfig$1.class
+com\portfolio\gateway\config\GatewayConfig.class
+com\portfolio\gateway\filter\JwtAuthenticationFilter.class

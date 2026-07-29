@@ -1,21 +1,45 @@
-# ===== GLOBAL =====
+# ===== SECRETS — NEVER COMMIT =====
 .env
-*.log
+.env.local
+.env.production
+*.env
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== IDE =====
 .vscode/
 .idea/
-.DS_Store
+*.iml
+*.iws
 
-# ===== FRONTEND (React + Tailwind) =====
+# ===== LOGS =====
+*.log
+logs/
+
+# ===== FRONTEND (React + Vite) =====
 frontend-service/node_modules/
-frontend-service/build/
 frontend-service/dist/
+frontend-service/build/
 frontend-service/.env
+frontend-service/.env.local
+frontend-service/.env.production
 
-# ===== BACKEND (Spring Boot) =====
+# ===== BACKEND (Maven / Spring Boot) =====
+# All service target directories
+**/target/
+
+# Compiled classes and archives — never commit these, Dockerfiles build them
+*.class
+*.jar
+*.war
+
+# Maven wrapper (keep mvnw scripts but not the binary cache)
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== CONTACT SERVICE LEGACY =====
 contact-services/target/
 contact-services/*.class
 contact-services/*.jar
 contact-services/.env
-
-# ===== OS =====
-Thumbs.db

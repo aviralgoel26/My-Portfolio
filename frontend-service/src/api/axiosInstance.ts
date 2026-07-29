@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+// VITE_API_URL must be set in .env.development or .env.production
+// Dev:  http://localhost:6061/api  (local gateway via docker-compose)
+// Prod: https://your-gateway.onrender.com/api  (set in Vercel env vars)
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
 const api = axios.create({
-    baseURL: '/api', // Proxied through Gateway Service (port 8080)
+    baseURL: API_BASE_URL,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
@@ -24,7 +29,7 @@ api.interceptors.response.use((response) => response, async (error) => {
         try {
             const refreshToken = localStorage.getItem('refreshToken');
             if (refreshToken) {
-                const response = await axios.post('/api/auth/refresh', { refreshToken });
+                const response = await axios.post(`${API_BASE_URL}/auth/refresh`, { refreshToken });
                 const { accessToken, refreshToken: newRefreshToken } = response.data;
                 
                 localStorage.setItem('accessToken', accessToken);
