@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "app.features.kafka.enabled", havingValue = "true")
 public class AnalyticsEventConsumer {
 
     private final VisitorEventRepository visitorEventRepository;

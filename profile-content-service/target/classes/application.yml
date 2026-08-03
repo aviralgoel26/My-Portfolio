@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: profile-content-service
+app:
+  features:
+    kafka:
+      enabled: false
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
   data:

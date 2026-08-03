@@ -62,12 +62,6 @@ services:
         value: https://eureka-server.onrender.com/eureka
       - key: MONGO_URI
         sync: false
-      - key: KAFKA_BOOTSTRAP_SERVERS
-        sync: false
-      - key: KAFKA_USERNAME
-        sync: false
-      - key: KAFKA_PASSWORD
-        sync: false
 
   - type: web
     name: media-service
@@ -100,12 +94,6 @@ services:
         value: https://eureka-server.onrender.com/eureka
       - key: MONGO_URI
         sync: false
-      - key: KAFKA_BOOTSTRAP_SERVERS
-        sync: false
-      - key: KAFKA_USERNAME
-        sync: false
-      - key: KAFKA_PASSWORD
-        sync: false
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT
@@ -128,10 +116,4 @@ services:
       - key: EUREKA_SERVER_URL
         value: https://eureka-server.onrender.com/eureka
       - key: MONGO_URI
-        sync: false
-      - key: KAFKA_BOOTSTRAP_SERVERS
-        sync: false
-      - key: KAFKA_USERNAME
-        sync: false
-      - key: KAFKA_PASSWORD
         sync: false

@@ -14,7 +14,14 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
 @Configuration
+@ConditionalOnProperty(name = "app.features.kafka.enabled", havingValue = "true")
+@Import(KafkaAutoConfiguration.class)
 @EnableAsync
 public class NotificationConfig {
 

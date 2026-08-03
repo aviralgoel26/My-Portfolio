@@ -1,6 +1,6 @@
 package com.portfolio.content.controller;
 
-import com.portfolio.content.kafka.ContentEventProducer;
+import com.portfolio.content.kafka.AnalyticsEventPublisher;
 import com.portfolio.content.model.Project;
 import com.portfolio.content.repository.ProjectRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectRepository projectRepository;
-    private final ContentEventProducer eventProducer;
+    private final AnalyticsEventPublisher eventProducer;
 
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects(HttpServletRequest request) {

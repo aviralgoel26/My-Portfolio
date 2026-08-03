@@ -5,7 +5,7 @@ import com.portfolio.notification.repository.ContactMessageRepository;
 import com.portfolio.notification.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
+import com.portfolio.notification.kafka.ContactEventPublisher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class NotificationController {
 
     private final ContactMessageRepository contactMessageRepository;
     private final EmailService emailService;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final ContactEventPublisher contactEventPublisher;
 
     /**
      * Public endpoint: submit a contact form.
@@ -36,16 +36,7 @@ public class NotificationController {
                     .body(Map.of("error", "name, email and message are required"));
         }
 
-        Map<String, Object> event = Map.of(
-                "eventType", "CONTACT_SUBMITTED",
-                "name", name,
-                "email", email,
-                "subject", subject,
-                "message", message,
-                "timestamp", System.currentTimeMillis()
-        );
-
-        kafkaTemplate.send("portfolio.contact", event);
+        contactEventPublisher.publishContactSubmitted(name, email, subject, message);
         return ResponseEntity.ok(Map.of("message", "Your message has been received. Thank you!"));
     }
 

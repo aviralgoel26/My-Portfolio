@@ -89,7 +89,8 @@ Set these on each Render service. Use `SPRING_PROFILES_ACTIVE=prod` for producti
 | Variable | Description |
 |---|---|
 | `MONGO_URI` | MongoDB Atlas URI for `portfolio_content` DB |
-| `KAFKA_BOOTSTRAP_SERVERS` | Upstash Kafka bootstrap URL |
+| `APP_FEATURES_KAFKA_ENABLED` | Set to `true` to enable Kafka (default `false`) |
+| `KAFKA_BOOTSTRAP_SERVERS` | (Only if Kafka enabled) Upstash Kafka URL |
 
 ### media-service
 
@@ -255,9 +256,10 @@ mongodb+srv://<user>:<password>@<cluster>.mongodb.net/<database>?retryWrites=tru
 
 ---
 
-## Kafka Setup (Upstash)
+## Kafka Setup (Upstash - OPTIONAL)
 
-> Upstash offers a serverless Kafka service with a free tier, ideal for this architecture.
+> **Note: Kafka is now OPTIONAL for this architecture.** By default, `app.features.kafka.enabled=false`. If you do not wish to deploy Kafka, you can skip this section entirely and your portfolio will run perfectly using graceful degradation.
+> If you wish to demonstrate event-driven architecture, follow these steps and set `APP_FEATURES_KAFKA_ENABLED=true` in Render.
 
 1. Sign up at [upstash.com](https://upstash.com)
 2. Create a **Kafka cluster** (select the region closest to your Render services)

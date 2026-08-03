@@ -13,7 +13,13 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
+import org.springframework.context.annotation.Import;
+
 @Configuration
+@ConditionalOnProperty(name = "app.features.kafka.enabled", havingValue = "true")
+@Import(KafkaAutoConfiguration.class)
 public class KafkaProducerConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
