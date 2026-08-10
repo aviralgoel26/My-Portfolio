@@ -2,6 +2,7 @@ services:
   - type: web
     name: eureka-server
     env: docker
+    dockerContext: ./eureka-server
     dockerfilePath: ./eureka-server/Dockerfile
     plan: free
     envVars:
@@ -11,6 +12,7 @@ services:
   - type: web
     name: gateway-service
     env: docker
+    dockerContext: ./gateway-service
     dockerfilePath: ./gateway-service/Dockerfile
     plan: free
     envVars:
@@ -32,6 +34,7 @@ services:
   - type: web
     name: auth-service
     env: docker
+    dockerContext: ./auth-service
     dockerfilePath: ./auth-service/Dockerfile
     plan: free
     envVars:
@@ -53,6 +56,7 @@ services:
   - type: web
     name: profile-content-service
     env: docker
+    dockerContext: ./profile-content-service
     dockerfilePath: ./profile-content-service/Dockerfile
     plan: free
     envVars:
@@ -66,6 +70,7 @@ services:
   - type: web
     name: media-service
     env: docker
+    dockerContext: ./media-service
     dockerfilePath: ./media-service/Dockerfile
     plan: free
     envVars:
@@ -85,6 +90,7 @@ services:
   - type: web
     name: notification-service
     env: docker
+    dockerContext: ./notification-service
     dockerfilePath: ./notification-service/Dockerfile
     plan: free
     envVars:
@@ -108,6 +114,7 @@ services:
   - type: web
     name: analytics-service
     env: docker
+    dockerContext: ./analytics-service
     dockerfilePath: ./analytics-service/Dockerfile
     plan: free
     envVars:
