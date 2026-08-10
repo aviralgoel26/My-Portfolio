@@ -5,13 +5,13 @@ import com.portfolio.notification.repository.ContactMessageRepository;
 import com.portfolio.notification.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
-@ConditionalOnMissingBean(ContactEventPublisher.class)
+@ConditionalOnProperty(name = "app.features.kafka.enabled", havingValue = "false", matchIfMissing = true)
 public class LocalContactEventPublisher implements ContactEventPublisher {
 
     private final ContactMessageRepository contactMessageRepository;
