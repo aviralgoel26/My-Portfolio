@@ -1,12 +1,12 @@
 package com.portfolio.content.kafka;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@ConditionalOnMissingBean(AnalyticsEventPublisher.class)
+@ConditionalOnProperty(name = "app.features.kafka.enabled", havingValue = "false", matchIfMissing = true)
 public class NoOpAnalyticsEventPublisher implements AnalyticsEventPublisher {
 
     @Override
