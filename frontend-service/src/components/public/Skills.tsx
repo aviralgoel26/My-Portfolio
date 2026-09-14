@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axiosInstance';
 import { Skill } from '../../types';
+import { DEFAULT_SKILLS } from '../../data/defaultData';
 
 const Skills = () => {
-    const [skills, setSkills] = useState<Skill[]>([]);
+    const [skills, setSkills] = useState<Skill[]>(DEFAULT_SKILLS);
 
     useEffect(() => {
         const fetchSkills = async () => {
             try {
                 const res = await api.get('/content/skills');
-                setSkills(res.data);
+                const data = Array.isArray(res.data) ? res.data : [];
+                if (data.length > 0) setSkills(data);
             } catch (error) {
-                console.error("Error fetching skills", error);
+                console.error("Error fetching skills — using default data", error);
+                // fallback already set via useState default
             }
         };
         fetchSkills();

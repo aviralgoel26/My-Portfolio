@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axiosInstance';
 import { Project } from '../../types';
+import { DEFAULT_PROJECTS } from '../../data/defaultData';
 import { ExternalLink, Github, Layers, ArrowRight } from 'lucide-react';
 
 const Projects = () => {
-    const [projects, setProjects] = useState<Project[]>([]);
+    const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS);
     const [filter, setFilter] = useState('All');
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
                 const res = await api.get('/content/projects');
-                setProjects(res.data);
+                const data = Array.isArray(res.data) ? res.data : [];
+                if (data.length > 0) setProjects(data);
             } catch (error) {
-                console.error("Error fetching projects", error);
+                console.error("Error fetching projects — using default data", error);
+                // fallback already set via useState default
             }
         };
         fetchProjects();

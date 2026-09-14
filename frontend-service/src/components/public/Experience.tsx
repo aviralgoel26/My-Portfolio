@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axiosInstance';
 import { Experience as ExperienceType } from '../../types';
+import { DEFAULT_EXPERIENCES } from '../../data/defaultData';
 import { Briefcase } from 'lucide-react';
 
 const Experience = () => {
-    const [experiences, setExperiences] = useState<ExperienceType[]>([]);
+    const [experiences, setExperiences] = useState<ExperienceType[]>(DEFAULT_EXPERIENCES);
 
     useEffect(() => {
         const fetchExp = async () => {
             try {
                 const res = await api.get('/content/experiences');
-                setExperiences(res.data);
+                const data = Array.isArray(res.data) ? res.data : [];
+                if (data.length > 0) setExperiences(data);
             } catch (error) {
-                console.error("Error fetching experience", error);
+                console.error("Error fetching experience — using default data", error);
+                // fallback already set via useState default
             }
         };
         fetchExp();
